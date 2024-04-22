@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="auto">
 
 <head>
     <meta charset="UTF-8">
@@ -899,9 +899,41 @@
     <title>{{ $pageTitle ?? config('app.name', 'Laravel') }}</title>
     @vite(['resources/css/web.css', 'resources/js/web.js'])
 </head>
-<body >
+
+<body class="bg-gray-50 dark:bg-gray-900">
     @include('admin.layouts.nav')
-    @yield('content')
+    @include('admin.layouts.sidebar')
+
+    <div class="mx-8">
+        @yield('content')
+    </div>
+
+    @yield('script')
+    <script>
+        // set dark light auto to the html tag class
+        const darkMode = localStorage.getItem('darkMode');
+        const html = document.querySelector('html');
+        if (darkMode === 'dark') {
+            html.classList.add('dark');
+        } else if (darkMode === 'light') {
+            html.classList.remove('dark');
+
+        } else {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                html.classList.add('dark');
+            }
+        }
+        // change the theme
+        function changeTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('darkMode', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('darkMode', 'dark');
+            }
+        }
+    </script>
 </body>
 
 </html>

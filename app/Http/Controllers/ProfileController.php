@@ -20,7 +20,6 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         return view('admin/auth/profile');
-
     }
 
     /**
@@ -28,12 +27,15 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
+        if ($request->hasFile('picture')) {
+            $request->user()->picture = uploadImage($request->file('picture'), 'users');
+        }
         $request->user()->save();
 
         return Redirect::route('dashboard.profile.edit');
