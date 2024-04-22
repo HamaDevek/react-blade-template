@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_suspended')->default(false);
             $table->boolean('is_banned')->default(false);
             $table->string('password');
+            $table->unsignedBigInteger('language_id')->nullable();
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->string('timezone')->default('UTC');
             $table->rememberToken();

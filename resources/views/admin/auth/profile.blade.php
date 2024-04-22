@@ -1,6 +1,6 @@
 @extends('admin.layouts.app', ['pageTitle' => 'Profile' . ' - ' . auth()->user()->name])
 @section('content')
-    <div class="container max-w-screen-xl mx-auto mt-8">
+
         <div class=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <section>
                 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
@@ -16,12 +16,12 @@
                                             src="{{ is_null(auth()->user()->picture) ? 'https://ui-avatars.com/api/?name=' . auth()->user()->name : getImage(auth()->user()->picture) }}"
                                             alt="Extra large avatar">
                                     </label>
-                                    <input onchange="updateAvatar(this)" class="hidden"  type="file" name="picture" accept=".jpeg,.png,.jpg,.gif"
-                                        id="imageUpload">
+                                    <input onchange="updateAvatar(this)" class="hidden" type="file" name="picture"
+                                        accept=".jpeg,.png,.jpg,.gif" id="imageUpload">
                                     @error('name')
                                         <p id="imageUpload_outline_error"
                                             class="mt-2 text-xs text-red-600 dark:text-red-400 text-center">
-                                            {{$message}}</p>
+                                            {{ $message }}</p>
                                     @enderror
 
                                 </div>
@@ -97,13 +97,14 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Enter Current Password" required>
                                 @error('current_password')
-                                    <p id="current_password_outline_error" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                    <p id="current_password_outline_error"
+                                        class="mt-2 text-xs text-red-600 dark:text-red-400">
                                         {{ $message }}</p>
                                 @enderror
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="password"
+                                <label for="password_change"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New
                                     Password</label>
                                 <input type="password" name="password" id="password_change"
@@ -123,7 +124,8 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Confirm New Password" required>
                                 @error('password_confirmation')
-                                    <p id="password_confirmation_outline_error" class="mt-2 text-xs text-red-600 dark:text-red-400">
+                                    <p id="password_confirmation_outline_error"
+                                        class="mt-2 text-xs text-red-600 dark:text-red-400">
                                         {{ $message }}</p>
                                 @enderror
                             </div>
@@ -171,7 +173,7 @@
                 </div>
             </section>
         </div>
-    </div>
+
 @endsection
 @section('script')
     <script>
