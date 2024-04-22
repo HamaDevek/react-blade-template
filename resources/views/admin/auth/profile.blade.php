@@ -136,10 +136,10 @@
                         </button>
                     </form>
                 </div>
-                <div class="hidden md:block border-l border-gray-200 dark:border-gray-700"></div>
+                <div class="hidden md:block border-r px-4 border-gray-200 dark:border-gray-700"></div>
                 {{-- Divier in mobile --}}
-                <div class="md:hidden border-t border-gray-200 dark:border-gray-700"></div>
-                <div class=" p-4 w-full">
+                <div class="md:hidden border-t mt-6 border-gray-200 dark:border-gray-700"></div>
+                <div class="p-4 w-full">
                     {{-- destroy PROFILE --}}
                     <form action="{{ route('dashboard.profile.destroy') }}" method="POST">
                         @csrf
