@@ -13,6 +13,7 @@
         "alpinejs": "^3.13.9",
         "autoprefixer": "^10.4.12",
         "axios": "^1.6.4",
+        "daisyui": "^4.10.2",
         "flowbite": "^2.3.0",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",

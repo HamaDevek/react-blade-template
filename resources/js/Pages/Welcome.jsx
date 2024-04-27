@@ -1,5 +1,6 @@
 import { Link, Head } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
     const { t, i18n } = useTranslation("translation");
@@ -12,6 +13,15 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
             .getElementById("docs-card-content")
             ?.classList.add("!flex-row");
         document.getElementById("background")?.classList.add("!hidden");
+    };
+    const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+
+    useEffect(() => {
+        i18n.changeLanguage(selectedLanguage);
+    }, [selectedLanguage, i18n]);
+
+    const changeLanguage = (language) => {
+        setSelectedLanguage(language);
     };
 
     return (
@@ -39,9 +49,20 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     />
                                 </svg>
                             </div>
+                            <div className="flex flex-row justify-end">
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="btn m-1">{t("Change Language")}</div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li><a onClick={() => changeLanguage('en')}>{t('English')}</a></li>
+                                        <li><a onClick={() => changeLanguage('ar')}>{t('Arabic')}</a></li>
+                                        <li><a onClick={() => changeLanguage('ku')}>{t('Kurdish')}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </header>
 
                         <main className="mt-6">
+
                             <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
                                 <a
                                     href="https://laravel.com/docs"
