@@ -9,9 +9,7 @@ export default defineConfig({
                 "resources/js/app.jsx",
                 "resources/css/app.css",
                 "resources/css/web.css",
-                "resources/js/web.js",
-                // view blade files
-                "resources/views/**/*.blade.php",
+                "resources/js/web.js"
             ],
             refresh: true,
         }),
