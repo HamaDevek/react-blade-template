@@ -47,6 +47,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return Redirect::route('login');
+        return Redirect::route('dashboard.login');
     }
 }
