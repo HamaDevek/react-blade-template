@@ -15,12 +15,9 @@ class InitUserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is logged in
         if (auth()->check()) {
-
-
+            return $next($request);
         }
-
-        return $next($request);
+        return redirect()->route('dashboard.login');
     }
 }
